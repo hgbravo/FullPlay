@@ -44,10 +44,10 @@ struct MockData {
     
     static var profile: CKRecord {
         let record                          = CKRecord(recordType: RecordType.profile)
-        record[DDGProfile.kFirstName]       = "HenrySuperLongFirstName"
-        record[DDGProfile.kLastName]        = "BravoSuperLongoLastName"
-        record[DDGProfile.kSocial]          = "@TryUrAppSuperLongSocialUser"
-        record[DDGProfile.kBio]             = "This is my Mock Data Bio. This is going great!"
+        record[FPProfile.kFirstName]       = "HenrySuperLongFirstName"
+        record[FPProfile.kLastName]        = "BravoSuperLongoLastName"
+        record[FPProfile.kSocial]          = "@TryUrAppSuperLongSocialUser"
+        record[FPProfile.kBio]             = "This is my Mock Data Bio. This is going great!"
         
         return record
     }

@@ -8,7 +8,7 @@
 import CloudKit
 import UIKit
 
-struct DDGProfile: Identifiable {
+struct FPProfile: Identifiable {
     static let kFirstName           = "firstName"
     static let kLastName            = "lastName"
     static let kAvatar              = "avatar"
@@ -26,11 +26,11 @@ struct DDGProfile: Identifiable {
     
     init(record: CKRecord) {
         id          = record.recordID
-        firstName   = record[DDGProfile.kFirstName] as? String ?? "N/A"
-        lastName    = record[DDGProfile.kLastName] as? String ?? "N/A"
-        avatar      = record[DDGProfile.kAvatar] as? CKAsset
-        social      = record[DDGProfile.kSocial] as? String ?? "N/A"
-        bio         = record[DDGProfile.kBio] as? String ?? "N/A"
+        firstName   = record[FPProfile.kFirstName] as? String ?? "N/A"
+        lastName    = record[FPProfile.kLastName] as? String ?? "N/A"
+        avatar      = record[FPProfile.kAvatar] as? CKAsset
+        social      = record[FPProfile.kSocial] as? String ?? "N/A"
+        bio         = record[FPProfile.kBio] as? String ?? "N/A"
     }
     
     
