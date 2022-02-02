@@ -12,7 +12,7 @@ struct DDGProfile: Identifiable {
     static let kFirstName           = "firstName"
     static let kLastName            = "lastName"
     static let kAvatar              = "avatar"
-    static let kSocial         = "social"
+    static let kSocial              = "social"
     static let kBio                 = "bio"
     static let kIsCheckedIn         = "isCheckedIn"
     static let kIsCheckedInNilCheck = "isCheckedInNilCheck"

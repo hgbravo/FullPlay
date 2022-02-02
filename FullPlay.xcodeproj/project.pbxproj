@@ -20,6 +20,7 @@
 		28FBA6EB27AAD13B000B11C6 /* FPCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6EA27AAD13B000B11C6 /* FPCategory.swift */; };
 		28FBA6ED27AAD37F000B11C6 /* FPZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6EC27AAD37F000B11C6 /* FPZone.swift */; };
 		28FBA6EF27AAD43A000B11C6 /* FPProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6EE27AAD43A000B11C6 /* FPProfile.swift */; };
+		28FBA6F127AADD35000B11C6 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6F027AADD35000B11C6 /* MockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		28FBA6EA27AAD13B000B11C6 /* FPCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPCategory.swift; sourceTree = "<group>"; };
 		28FBA6EC27AAD37F000B11C6 /* FPZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPZone.swift; sourceTree = "<group>"; };
 		28FBA6EE27AAD43A000B11C6 /* FPProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPProfile.swift; sourceTree = "<group>"; };
+		28FBA6F027AADD35000B11C6 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				28FBA6EA27AAD13B000B11C6 /* FPCategory.swift */,
 				28FBA6EC27AAD37F000B11C6 /* FPZone.swift */,
 				28FBA6EE27AAD43A000B11C6 /* FPProfile.swift */,
+				28FBA6F027AADD35000B11C6 /* MockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28FBA6EB27AAD13B000B11C6 /* FPCategory.swift in Sources */,
+				28FBA6F127AADD35000B11C6 /* MockData.swift in Sources */,
 				28FBA6ED27AAD37F000B11C6 /* FPZone.swift in Sources */,
 				28FBA6E727AAC40F000B11C6 /* AlertItem.swift in Sources */,
 				28FBA6EF27AAD43A000B11C6 /* FPProfile.swift in Sources */,

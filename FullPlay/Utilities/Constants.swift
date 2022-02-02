@@ -9,8 +9,10 @@ import Foundation
 import UIKit
 
 enum RecordType {
-    static let location = "DDGLocation"
-    static let profile  = "DDGProfile"
+    static let location = "FPLocation"
+    static let category = "FPCategory"
+    static let zone     = "FPZone"
+    static let profile  = "FPProfile"
 }
 
 enum PlaceholderImage {
