@@ -28,7 +28,7 @@ struct LocationMapView: View {
                 }
             }
             .accentColor(.fullPlayRed)
-            .ignoresSafeArea()
+//            .ignoresSafeArea()
             
             LogoView(frameWidth: 125).shadow(radius: 10)
         }

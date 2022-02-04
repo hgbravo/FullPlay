@@ -57,6 +57,56 @@ final class CloudKitManager {
     }
     
     
+    func getCheckedInProfilesDictionary() async throws -> [CKRecord.ID: [FPProfile]] {
+        let predicate = NSPredicate(format: "isCheckedInNilCheck == 1")
+        let query = CKQuery(recordType: RecordType.profile, predicate: predicate)
+        
+        var checkedInProfiles: [CKRecord.ID: [FPProfile]] = [:]
+        
+        let (matchResults, cursor) = try await container.publicCloudDatabase.records(matching: query)
+        let records = matchResults.compactMap { _, result in try? result.get() }
+        
+        for record in records {
+            let profile = FPProfile(record: record)
+            guard let locationReference = record[FPProfile.kIsCheckedIn] as? CKRecord.Reference else { continue }
+            checkedInProfiles[locationReference.recordID, default: []].append(profile)
+        }
+        
+        guard let cursor = cursor else { return checkedInProfiles }
+        
+        do {
+            return try await CloudKitManager.shared.continueWithCheckedInProfilesDict(cursor: cursor, dictionary: checkedInProfiles)
+        } catch {
+            throw error
+        }
+        
+    }
+    
+    
+    private func continueWithCheckedInProfilesDict(cursor: CKQueryOperation.Cursor,
+                                                   dictionary: [CKRecord.ID: [FPProfile]]) async throws -> [CKRecord.ID: [FPProfile]] {
+        
+        var checkedInProfiles = dictionary
+        
+        let (matchResults, cursor) = try await container.publicCloudDatabase.records(continuingMatchFrom: cursor)
+        let records = matchResults.compactMap { _, result in try? result.get() }
+        
+        for record in records {
+            let profile = FPProfile(record: record)
+            guard let locationReference = record[FPProfile.kIsCheckedIn] as? CKRecord.Reference else { continue }
+            checkedInProfiles[locationReference.recordID, default: []].append(profile)
+        }
+        
+        guard let cursor = cursor else { return checkedInProfiles }
+        
+        do {
+            return try await CloudKitManager.shared.continueWithCheckedInProfilesDict(cursor: cursor, dictionary: checkedInProfiles)
+        } catch {
+            throw error
+        }
+    }
+    
+    
     func getCheckedInProfilesCount() async throws -> [CKRecord.ID: Int] {
         let predicate           = NSPredicate(format: "isCheckedInNilCheck == 1")
         let query               = CKQuery(recordType: RecordType.profile, predicate: predicate)
@@ -77,6 +127,13 @@ final class CloudKitManager {
         }
         
         return checkedInProfiles
+    }
+    
+    
+    func batchSave(records: [CKRecord]) async throws -> [CKRecord] {
+        
+        let (savedResult, _) = try await container.publicCloudDatabase.modifyRecords(saving: records, deleting: [])
+        return savedResult.compactMap { _, result in try? result.get() }
     }
     
     

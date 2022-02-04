@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2837933427AD83A900E61EE6 /* AppTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837933327AD83A900E61EE6 /* AppTabView.swift */; };
+		2837933627AD83D600E61EE6 /* AppTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837933527AD83D600E61EE6 /* AppTabViewModel.swift */; };
+		2837933827AD844B00E61EE6 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837933727AD844B00E61EE6 /* OnboardView.swift */; };
+		2837933B27AD849900E61EE6 /* LocationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837933A27AD849900E61EE6 /* LocationListCell.swift */; };
+		2837933D27AD84E400E61EE6 /* LocationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837933C27AD84E400E61EE6 /* LocationListView.swift */; };
+		2837933F27AD850000E61EE6 /* LocationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837933E27AD850000E61EE6 /* LocationListViewModel.swift */; };
+		2837934127AD85FE00E61EE6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837934027AD85FE00E61EE6 /* ProfileViewModel.swift */; };
+		2837934327AD867300E61EE6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837934227AD867300E61EE6 /* ProfileView.swift */; };
+		2837934627AD871C00E61EE6 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837934527AD871C00E61EE6 /* PhotoPicker.swift */; };
+		2837934827AD876800E61EE6 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837934727AD876800E61EE6 /* CustomModifiers.swift */; };
+		2837934A27AD884700E61EE6 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837934927AD884700E61EE6 /* View+Ext.swift */; };
 		28FBA6CD27A9E245000B11C6 /* FullPlayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6CC27A9E245000B11C6 /* FullPlayApp.swift */; };
 		28FBA6CF27A9E245000B11C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6CE27A9E245000B11C6 /* ContentView.swift */; };
 		28FBA6D127A9E247000B11C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FBA6D027A9E247000B11C6 /* Assets.xcassets */; };
@@ -39,6 +50,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2837933327AD83A900E61EE6 /* AppTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabView.swift; sourceTree = "<group>"; };
+		2837933527AD83D600E61EE6 /* AppTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabViewModel.swift; sourceTree = "<group>"; };
+		2837933727AD844B00E61EE6 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
+		2837933A27AD849900E61EE6 /* LocationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListCell.swift; sourceTree = "<group>"; };
+		2837933C27AD84E400E61EE6 /* LocationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListView.swift; sourceTree = "<group>"; };
+		2837933E27AD850000E61EE6 /* LocationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewModel.swift; sourceTree = "<group>"; };
+		2837934027AD85FE00E61EE6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		2837934227AD867300E61EE6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		2837934527AD871C00E61EE6 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		2837934727AD876800E61EE6 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
+		2837934927AD884700E61EE6 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		28FBA6C927A9E245000B11C6 /* FullPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FullPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28FBA6CC27A9E245000B11C6 /* FullPlayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPlayApp.swift; sourceTree = "<group>"; };
 		28FBA6CE27A9E245000B11C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,6 +106,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2837933227AD835500E61EE6 /* AppTabView */ = {
+			isa = PBXGroup;
+			children = (
+				2837933527AD83D600E61EE6 /* AppTabViewModel.swift */,
+				2837933327AD83A900E61EE6 /* AppTabView.swift */,
+			);
+			path = AppTabView;
+			sourceTree = "<group>";
+		};
+		2837933927AD846C00E61EE6 /* LocationsListView */ = {
+			isa = PBXGroup;
+			children = (
+				2837933E27AD850000E61EE6 /* LocationListViewModel.swift */,
+				2837933C27AD84E400E61EE6 /* LocationListView.swift */,
+				2837933A27AD849900E61EE6 /* LocationListCell.swift */,
+			);
+			path = LocationsListView;
+			sourceTree = "<group>";
+		};
+		2837934427AD86E200E61EE6 /* UIKit Components */ = {
+			isa = PBXGroup;
+			children = (
+				2837934527AD871C00E61EE6 /* PhotoPicker.swift */,
+			);
+			path = "UIKit Components";
+			sourceTree = "<group>";
+		};
 		28FBA6C027A9E245000B11C6 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +202,7 @@
 				28FBA6E027AAB974000B11C6 /* Color+Ext.swift */,
 				28FBA6E227AABD9F000B11C6 /* CKAsset+Ext.swift */,
 				28FBA6E427AABE1F000B11C6 /* UIImage+Ext.swift */,
+				2837934927AD884700E61EE6 /* View+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -160,9 +210,12 @@
 		28FBA6F227AAE503000B11C6 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				2837933227AD835500E61EE6 /* AppTabView */,
 				28FBA70D27AB166E000B11C6 /* ProfileView */,
 				28FBA70027AB0DFD000B11C6 /* LocationDetailView */,
 				28FBA6FB27AAEDB6000B11C6 /* LocationsMapView */,
+				2837933927AD846C00E61EE6 /* LocationsListView */,
+				2837933727AD844B00E61EE6 /* OnboardView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -170,6 +223,7 @@
 		28FBA6F327AAE528000B11C6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2837934727AD876800E61EE6 /* CustomModifiers.swift */,
 				28FBA71027AB17C8000B11C6 /* Buttons */,
 				28FBA70527AB1010000B11C6 /* CustomViews */,
 				28FBA6F227AAE503000B11C6 /* Screens */,
@@ -208,6 +262,7 @@
 		28FBA70527AB1010000B11C6 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				2837934427AD86E200E61EE6 /* UIKit Components */,
 				28FBA70627AB1059000B11C6 /* MapAnnotation */,
 				28FBA70B27AB11D1000B11C6 /* LogoView.swift */,
 				28FBA71327AB1877000B11C6 /* AvatarView.swift */,
@@ -228,7 +283,9 @@
 		28FBA70D27AB166E000B11C6 /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
+				2837934027AD85FE00E61EE6 /* ProfileViewModel.swift */,
 				28FBA70E27AB16D9000B11C6 /* ProfileModalView.swift */,
+				2837934227AD867300E61EE6 /* ProfileView.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -319,30 +376,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2837934A27AD884700E61EE6 /* View+Ext.swift in Sources */,
 				28FBA6EB27AAD13B000B11C6 /* FPCategory.swift in Sources */,
 				28FBA6F127AADD35000B11C6 /* MockData.swift in Sources */,
 				28FBA70227AB0E26000B11C6 /* LocationDetailView.swift in Sources */,
 				28FBA6F827AAE5DB000B11C6 /* HapticManager.swift in Sources */,
+				2837933627AD83D600E61EE6 /* AppTabViewModel.swift in Sources */,
 				28FBA70827AB1096000B11C6 /* MapBalloon.swift in Sources */,
+				2837933B27AD849900E61EE6 /* LocationListCell.swift in Sources */,
 				28FBA6FF27AAEE3C000B11C6 /* LocationsMapView.swift in Sources */,
 				28FBA6ED27AAD37F000B11C6 /* FPZone.swift in Sources */,
 				28FBA70427AB0E65000B11C6 /* LocationDetailViewModel.swift in Sources */,
 				28FBA71427AB1877000B11C6 /* AvatarView.swift in Sources */,
 				28FBA6E727AAC40F000B11C6 /* AlertItem.swift in Sources */,
 				28FBA6EF27AAD43A000B11C6 /* FPProfile.swift in Sources */,
+				2837933D27AD84E400E61EE6 /* LocationListView.swift in Sources */,
 				28FBA71627AB18C8000B11C6 /* LoadingView.swift in Sources */,
 				28FBA6CF27A9E245000B11C6 /* ContentView.swift in Sources */,
 				28FBA6E927AACF61000B11C6 /* FPLocation.swift in Sources */,
 				28FBA6E327AABD9F000B11C6 /* CKAsset+Ext.swift in Sources */,
+				2837934127AD85FE00E61EE6 /* ProfileViewModel.swift in Sources */,
 				28FBA70F27AB16D9000B11C6 /* ProfileModalView.swift in Sources */,
 				28FBA70C27AB11D1000B11C6 /* LogoView.swift in Sources */,
 				28FBA6E127AAB974000B11C6 /* Color+Ext.swift in Sources */,
+				2837933827AD844B00E61EE6 /* OnboardView.swift in Sources */,
 				28FBA70A27AB10F9000B11C6 /* FPAnnotation.swift in Sources */,
+				2837933F27AD850000E61EE6 /* LocationListViewModel.swift in Sources */,
 				28FBA6E527AABE1F000B11C6 /* UIImage+Ext.swift in Sources */,
+				2837934327AD867300E61EE6 /* ProfileView.swift in Sources */,
 				28FBA6CD27A9E245000B11C6 /* FullPlayApp.swift in Sources */,
+				2837934627AD871C00E61EE6 /* PhotoPicker.swift in Sources */,
+				2837933427AD83A900E61EE6 /* AppTabView.swift in Sources */,
 				28FBA6FD27AAEDDA000B11C6 /* LocationsMapViewModel.swift in Sources */,
 				28FBA6DE27AAB806000B11C6 /* Constants.swift in Sources */,
 				28FBA6F627AAE58D000B11C6 /* LocationManager.swift in Sources */,
+				2837934827AD876800E61EE6 /* CustomModifiers.swift in Sources */,
 				28FBA6FA27AAE650000B11C6 /* CloudKitManager.swift in Sources */,
 				28FBA71227AB17E3000B11C6 /* XDismissButton.swift in Sources */,
 			);

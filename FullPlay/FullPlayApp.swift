@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct FullPlayApp: App {
+    let locationManager = LocationManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppTabView()
+                .environmentObject(locationManager)
                 .onAppear {
                     UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
                 }
