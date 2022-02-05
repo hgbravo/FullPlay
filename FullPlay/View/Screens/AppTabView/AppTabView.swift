@@ -18,7 +18,7 @@ struct AppTabView: View {
                 .tag(LocationMapView.tag)
             
             LocationListView()
-                .tabItem { Label("Locations", systemImage: "building") }
+                .tabItem { Label("Courts", systemImage: "sportscourt") }
                 .tag(LocationListView.tag)
             
             NavigationView { ProfileView() }

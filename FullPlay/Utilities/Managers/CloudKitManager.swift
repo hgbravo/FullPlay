@@ -31,6 +31,18 @@ final class CloudKitManager {
     }
     
     
+    func getZones() async throws -> [FPZone] {
+        let sortDescriptor = NSSortDescriptor(key: FPZone.kName, ascending: true)
+        let query = CKQuery(recordType: RecordType.zone, predicate: NSPredicate(value: true))
+        query.sortDescriptors = [sortDescriptor]
+        
+        let (matchResults, _) = try await container.publicCloudDatabase.records(matching: query)
+        let records = matchResults.compactMap { _, result in try? result.get() }
+        
+        return records.map(FPZone.init)
+    }
+    
+    
     func getLocations() async throws -> [FPLocation] {
         let sortDescriptor      = NSSortDescriptor(key: FPLocation.kName, ascending: true)
         let query               = CKQuery(recordType: RecordType.location, predicate: NSPredicate(value: true))
