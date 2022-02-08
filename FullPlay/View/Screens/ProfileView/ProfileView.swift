@@ -15,7 +15,7 @@ struct ProfileView: View {
     @FocusState private var focusedTextField: ProfileTextField?
     
     enum ProfileTextField {
-        case firstName, lastName, companyName, bio
+        case firstName, lastName, social, bio
     }
     
     var body: some View {
@@ -39,11 +39,11 @@ struct ProfileView: View {
                             TextField("Last Name", text: $viewModel.lastName)
                                 .profileNameStyle()
                                 .focused($focusedTextField, equals: .lastName)
-                                .onSubmit { focusedTextField = .companyName }
+                                .onSubmit { focusedTextField = .social }
                                 .submitLabel(.next)
                             
-                            TextField("Company Name", text: $viewModel.social)
-                                .focused($focusedTextField, equals: .companyName)
+                            TextField("Social", text: $viewModel.social)
+                                .focused($focusedTextField, equals: .social)
                                 .onSubmit { focusedTextField = .bio }
                                 .submitLabel(.next)
                         }
@@ -163,7 +163,7 @@ fileprivate struct CharacterRemainView: View {
     var currentCount: Int
     
     var body: some View {
-        Text("Bio: ")
+        Text("Status: ")
             .font(.caption)
             .foregroundColor(.secondary)
         +

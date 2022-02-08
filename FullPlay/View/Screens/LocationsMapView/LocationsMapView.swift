@@ -30,7 +30,7 @@ struct LocationMapView: View {
             .accentColor(.fullPlayRed)
             .ignoresSafeArea(edges: .top)
             
-            LogoView(frameWidth: 125).shadow(radius: 15)
+            LogoView(frameWidth: 210).shadow(radius: 15)
         }
         .sheet(isPresented: $viewModel.isShowingDetailView, onDismiss: {
             viewModel.getCheckedInClount()
