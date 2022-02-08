@@ -18,8 +18,8 @@ extension LocationMapView {
         @Published var alertItem: AlertItem?
         @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 28.565017,
                                                                                   longitude: -81.589506),
-                                                   span: MKCoordinateSpan(latitudeDelta: 0.01,
-                                                                          longitudeDelta: 0.01))
+                                                   span: MKCoordinateSpan(latitudeDelta: 0.3,
+                                                                          longitudeDelta: 0.3))
         
         let deviceLocationManager = CLLocationManager()
         
@@ -38,7 +38,7 @@ extension LocationMapView {
             guard let currentLocation = locations.last else { return }
             
             withAnimation {
-                region = MKCoordinateRegion(center: currentLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+                region = MKCoordinateRegion(center: currentLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
             }
         }
         

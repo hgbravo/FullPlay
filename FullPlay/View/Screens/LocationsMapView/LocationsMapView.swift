@@ -28,11 +28,13 @@ struct LocationMapView: View {
                 }
             }
             .accentColor(.fullPlayRed)
-//            .ignoresSafeArea()
+            .ignoresSafeArea(edges: .top)
             
-            LogoView(frameWidth: 125).shadow(radius: 10)
+            LogoView(frameWidth: 125).shadow(radius: 15)
         }
-        .sheet(isPresented: $viewModel.isShowingDetailView, content: {
+        .sheet(isPresented: $viewModel.isShowingDetailView, onDismiss: {
+            viewModel.getCheckedInClount()
+        }, content: {
             NavigationView {
                 LocationDetailView(viewModel: LocationDetailViewModel(location: locationManager.selectedLocation!))
                     .toolbar { Button("Dismiss", action: { viewModel.isShowingDetailView = false }) }
