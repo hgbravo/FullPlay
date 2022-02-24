@@ -14,7 +14,7 @@ extension ProfileView {
     @MainActor final class ProfileViewModel: ObservableObject {
         @Published var firstName            = ""
         @Published var lastName             = ""
-        @Published var social          = ""
+        @Published var social               = ""
         @Published var bio                  = ""
         @Published var avatar               = PlaceholderImage.avatar
         @Published var isShowingPhotoPicker = false

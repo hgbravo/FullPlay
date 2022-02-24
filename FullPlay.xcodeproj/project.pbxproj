@@ -18,6 +18,8 @@
 		2837934627AD871C00E61EE6 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837934527AD871C00E61EE6 /* PhotoPicker.swift */; };
 		2837934827AD876800E61EE6 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837934727AD876800E61EE6 /* CustomModifiers.swift */; };
 		2837934A27AD884700E61EE6 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837934927AD884700E61EE6 /* View+Ext.swift */; };
+		28E02E5B27B47A3700F69A30 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E02E5A27B47A3700F69A30 /* StoreKit.framework */; };
+		28E02E5E27B47E0300F69A30 /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 28E02E5D27B47E0300F69A30 /* Purchases */; };
 		28FBA6CD27A9E245000B11C6 /* FullPlayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6CC27A9E245000B11C6 /* FullPlayApp.swift */; };
 		28FBA6CF27A9E245000B11C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6CE27A9E245000B11C6 /* ContentView.swift */; };
 		28FBA6D127A9E247000B11C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FBA6D027A9E247000B11C6 /* Assets.xcassets */; };
@@ -61,6 +63,7 @@
 		2837934527AD871C00E61EE6 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		2837934727AD876800E61EE6 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
 		2837934927AD884700E61EE6 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		28E02E5A27B47A3700F69A30 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		28FBA6C927A9E245000B11C6 /* FullPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FullPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28FBA6CC27A9E245000B11C6 /* FullPlayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPlayApp.swift; sourceTree = "<group>"; };
 		28FBA6CE27A9E245000B11C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +103,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				28FBA71A27AB27EA000B11C6 /* CloudKit.framework in Frameworks */,
+				28E02E5B27B47A3700F69A30 /* StoreKit.framework in Frameworks */,
+				28E02E5E27B47E0300F69A30 /* Purchases in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +306,7 @@
 		28FBA71827AB27EA000B11C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				28E02E5A27B47A3700F69A30 /* StoreKit.framework */,
 				28FBA71927AB27EA000B11C6 /* CloudKit.framework */,
 			);
 			name = Frameworks;
@@ -322,6 +328,9 @@
 			dependencies = (
 			);
 			name = FullPlay;
+			packageProductDependencies = (
+				28E02E5D27B47E0300F69A30 /* Purchases */,
+			);
 			productName = FullPlay;
 			productReference = 28FBA6C927A9E245000B11C6 /* FullPlay.app */;
 			productType = "com.apple.product-type.application";
@@ -350,6 +359,9 @@
 				Base,
 			);
 			mainGroup = 28FBA6C027A9E245000B11C6;
+			packageReferences = (
+				28E02E5C27B47E0300F69A30 /* XCRemoteSwiftPackageReference "purchases-ios" */,
+			);
 			productRefGroup = 28FBA6CA27A9E245000B11C6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -617,6 +629,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		28E02E5C27B47E0300F69A30 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		28E02E5D27B47E0300F69A30 /* Purchases */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 28E02E5C27B47E0300F69A30 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = Purchases;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 28FBA6C127A9E245000B11C6 /* Project object */;
 }
