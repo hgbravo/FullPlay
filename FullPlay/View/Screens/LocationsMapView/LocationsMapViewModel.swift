@@ -8,6 +8,7 @@
 import MapKit
 import CloudKit
 import SwiftUI
+import Purchases
 
 extension LocationMapView {
     
@@ -26,6 +27,15 @@ extension LocationMapView {
         override init() {
             super.init()
             deviceLocationManager.delegate = self
+            
+            // Check if user has an active subscription
+            Purchases.shared.purchaserInfo { info, error in
+                
+                // Check the info parameter for active entitlements
+                if info?.entitlements["allaccess"]?.isActive == true {
+                    
+                }
+            }
         }
         
         
