@@ -6,10 +6,17 @@
 //
 
 import SwiftUI
+import Purchases
 
 @main
 struct FullPlayApp: App {
     let locationManager = LocationManager()
+    
+    init() {
+        
+        // Initialize Revenue Cat
+        setupRevenueCat()
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -19,5 +26,11 @@ struct FullPlayApp: App {
                     UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
                 }
         }
+    }
+    
+    
+    func setupRevenueCat() {
+        Purchases.logLevel = .debug
+        Purchases.configure(withAPIKey: "appl_tuRdNLwHNpUyuUaNXevurnHJdUL")
     }
 }

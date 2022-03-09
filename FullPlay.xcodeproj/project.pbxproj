@@ -21,7 +21,6 @@
 		28E02E5B27B47A3700F69A30 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E02E5A27B47A3700F69A30 /* StoreKit.framework */; };
 		28E02E5E27B47E0300F69A30 /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 28E02E5D27B47E0300F69A30 /* Purchases */; };
 		28FBA6CD27A9E245000B11C6 /* FullPlayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6CC27A9E245000B11C6 /* FullPlayApp.swift */; };
-		28FBA6CF27A9E245000B11C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6CE27A9E245000B11C6 /* ContentView.swift */; };
 		28FBA6D127A9E247000B11C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FBA6D027A9E247000B11C6 /* Assets.xcassets */; };
 		28FBA6D427A9E247000B11C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FBA6D327A9E247000B11C6 /* Preview Assets.xcassets */; };
 		28FBA6DE27AAB806000B11C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6DD27AAB806000B11C6 /* Constants.swift */; };
@@ -66,7 +65,6 @@
 		28E02E5A27B47A3700F69A30 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		28FBA6C927A9E245000B11C6 /* FullPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FullPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28FBA6CC27A9E245000B11C6 /* FullPlayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPlayApp.swift; sourceTree = "<group>"; };
-		28FBA6CE27A9E245000B11C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		28FBA6D027A9E247000B11C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28FBA6D327A9E247000B11C6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		28FBA6DD27AAB806000B11C6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 				28FBA6DB27AAB7C0000B11C6 /* Utilities */,
 				28FBA6DA27AAB71E000B11C6 /* Model */,
 				28FBA6F327AAE528000B11C6 /* View */,
-				28FBA6CE27A9E245000B11C6 /* ContentView.swift */,
 				28FBA6D027A9E247000B11C6 /* Assets.xcassets */,
 				28FBA6D227A9E247000B11C6 /* Preview Content */,
 			);
@@ -404,7 +401,6 @@
 				28FBA6EF27AAD43A000B11C6 /* FPProfile.swift in Sources */,
 				2837933D27AD84E400E61EE6 /* LocationListView.swift in Sources */,
 				28FBA71627AB18C8000B11C6 /* LoadingView.swift in Sources */,
-				28FBA6CF27A9E245000B11C6 /* ContentView.swift in Sources */,
 				28FBA6E927AACF61000B11C6 /* FPLocation.swift in Sources */,
 				28FBA6E327AABD9F000B11C6 /* CKAsset+Ext.swift in Sources */,
 				2837934127AD85FE00E61EE6 /* ProfileViewModel.swift in Sources */,

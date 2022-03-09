@@ -27,7 +27,7 @@ struct FPAnnotation: View {
                 if number > 0 {
                     Text("\(min(number, 99))")
                         .font(.system(size: 11, weight: .bold))
-                        .frame(width: 26, height: 18)
+                        .frame(width: 26, height: 26)
                         .background(Color.fullPlayRed)
                         .foregroundColor(.white)
                         .clipShape(Capsule())

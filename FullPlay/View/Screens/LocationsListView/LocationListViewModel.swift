@@ -18,7 +18,6 @@ extension LocationListView {
         func getCheckedInProfilesDisctionary() async  {
             do {
                 checkedInProfiles = try await CloudKitManager.shared.getCheckedInProfilesDictionary()
-                print("Called")
             } catch {
                 alertItem = AlertContext.unableToGetAllCheckedInProfiles
             }
