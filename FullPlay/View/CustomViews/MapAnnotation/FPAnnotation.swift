@@ -10,6 +10,7 @@ import SwiftUI
 struct FPAnnotation: View {
     var location: FPLocation
     var number: Int
+    var allAccess: Bool
     
     var body: some View {
         VStack {
@@ -24,8 +25,18 @@ struct FPAnnotation: View {
                     .clipShape(Circle())
                     .offset(y: -15)
                 
-                if number > 0 {
-                    Text("\(min(number, 99))")
+                if allAccess {
+                    if number > 0 {
+                        Text("\(min(number, 99))")
+                            .font(.system(size: 11, weight: .bold))
+                            .frame(width: 26, height: 26)
+                            .background(Color.fullPlayRed)
+                            .foregroundColor(.white)
+                            .clipShape(Capsule())
+                            .offset(x: 20, y: -28)
+                    }
+                } else {
+                    Text("?")
                         .font(.system(size: 11, weight: .bold))
                         .frame(width: 26, height: 26)
                         .background(Color.fullPlayRed)
@@ -46,6 +57,6 @@ struct FPAnnotation: View {
 
 struct DDGAnnotation_Previews: PreviewProvider {
     static var previews: some View {
-        FPAnnotation(location: FPLocation(record: MockData.location), number: 44)
+        FPAnnotation(location: FPLocation(record: MockData.location), number: 44, allAccess: true)
     }
 }

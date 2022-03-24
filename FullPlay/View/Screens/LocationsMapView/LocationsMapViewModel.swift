@@ -27,15 +27,6 @@ extension LocationMapView {
         override init() {
             super.init()
             deviceLocationManager.delegate = self
-            
-            // Check if user has an active subscription
-            Purchases.shared.purchaserInfo { info, error in
-                
-                // Check the info parameter for active entitlements
-                if info?.entitlements["allaccess"]?.isActive == true {
-                    
-                }
-            }
         }
         
         
@@ -67,7 +58,7 @@ extension LocationMapView {
         }
         
         
-        func getCheckedInClount() {
+        func getCheckedInCount() {
             Task {
                 do {
                     checkedInProfiles = try await CloudKitManager.shared.getCheckedInProfilesCount()

@@ -11,6 +11,7 @@ import Purchases
 @main
 struct FullPlayApp: App {
     let locationManager = LocationManager()
+    let storeManager    = StoreManager()
     
     init() {
         
@@ -22,7 +23,9 @@ struct FullPlayApp: App {
         WindowGroup {
             AppTabView()
                 .environmentObject(locationManager)
+                .environmentObject(storeManager)
                 .onAppear {
+                    storeManager.getAllAccessStatus()
                     UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
                 }
         }

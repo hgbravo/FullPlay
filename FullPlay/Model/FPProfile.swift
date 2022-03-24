@@ -16,6 +16,7 @@ struct FPProfile: Identifiable {
     static let kBio                 = "bio"
     static let kIsCheckedIn         = "isCheckedIn"
     static let kIsCheckedInNilCheck = "isCheckedInNilCheck"
+    static let khasAllAccess        = "hasAllAccess"
     
     let id: CKRecord.ID
     let firstName: String

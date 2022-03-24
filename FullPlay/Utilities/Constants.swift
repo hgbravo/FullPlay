@@ -34,6 +34,10 @@ enum ImageDimension {
     }
 }
 
+enum Entitlements {
+    static let allaccess = "allaccess"
+}
+
 enum DeviceTypes {
     enum ScreenSize {
         static let width                = UIScreen.main.bounds.size.width
