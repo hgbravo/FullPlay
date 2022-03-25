@@ -16,6 +16,7 @@ enum CheckInStatus { case checkedIn, checkedOut }
     @Published var checkedInProfiles: [FPProfile] = []
     @Published var profileForModal: FPProfile = FPProfile(record: MockData.profile)
     @Published var isShowingProfileModal = false
+    @Published var isShowingStoreModal = false
     @Published var isCheckedIn = false
     @Published var isLoading = false
     @Published var alertItem: AlertItem?

@@ -10,6 +10,7 @@ import SwiftUI
 struct LocationDetailView: View {
     
     @ObservedObject var viewModel: LocationDetailViewModel
+    @EnvironmentObject private var storeManager: StoreManager
     
     var body: some View {
         
@@ -20,7 +21,11 @@ struct LocationDetailView: View {
                 DescriptionView(text: viewModel.location.description)
                 ActionButtonHStack(viewModel: viewModel)
                 GridHeaderTextView(number: viewModel.checkedInProfiles.count)
-                AvatarGridView(viewModel: viewModel)
+                if storeManager.hasAllAccess {
+                    AvatarGridView(viewModel: viewModel)
+                } else {
+                    NoAccessView()
+                }
                 Spacer()
             }
             .accessibilityHidden(viewModel.isShowingProfileModal)
@@ -247,5 +252,17 @@ fileprivate struct AvatarGridView: View {
             
             if viewModel.isLoading { LoadingView() }
         }
+    }
+}
+
+fileprivate struct NoAccessView: View {
+    
+    var body: some View {
+        Text("No Access")
+            .lineLimit(3)
+            .minimumScaleFactor(0.75)
+            .frame(height: 70)
+            .padding(.horizontal)
+            .padding(.bottom, 20)
     }
 }
