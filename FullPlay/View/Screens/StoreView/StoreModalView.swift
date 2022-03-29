@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct StoreViewModal: View {
+struct StoreModalView: View {
     @Binding var isShowingStoreModal: Bool
+    @EnvironmentObject private var storeManager: StoreManager
     
     var body: some View {
         GeometryReader { geo in
@@ -22,7 +23,12 @@ struct StoreViewModal: View {
                         .minimumScaleFactor(0.75)
                         .padding(.horizontal)
                     
-                    Button("All Access Yearly - $33.99") {}
+                    Button("All Access Monthly - $3.99") {
+                        storeManager.purchaseAllAccess(productID: "fp_399_1m") {
+                            storeManager.hasAllAccess = true
+                            isShowingStoreModal = false
+                        }
+                    }
                         .buttonStyle(.bordered)
                         .tint(.brandPrimary)
                         .controlSize(.large)
@@ -59,6 +65,6 @@ struct StoreViewModal: View {
 
 struct StoreView_Previews: PreviewProvider {
     static var previews: some View {
-        StoreViewModal(isShowingStoreModal: .constant(true))
+        StoreModalView(isShowingStoreModal: .constant(true))
     }
 }

@@ -97,4 +97,9 @@ struct AlertContext {
     static let unableToGetCheckedInProfiles         = AlertItem(title: Text("Server Error"),
                                                                 message: Text("We are unable to get users checked into this location at this time.\nPlease try again."),
                                                                 dismissButton: .default(Text("Ok")))
+    
+    //MARK: - Store Errors
+    static let hasNotAllAccess                   = AlertItem(title: Text("No Access"),
+                                                                message: Text("This feature is included with the All Access Subscription. Please get a Monthly or Yearly Subscription to enjoy all the features."),
+                                                                dismissButton: .default(Text("Ok")))
 }

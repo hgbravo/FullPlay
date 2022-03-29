@@ -13,7 +13,7 @@ class StoreManager: ObservableObject {
     @Published var hasAllAccess: Bool = false
     
     
-    func getAllAccessStatus() {
+    @MainActor func getAllAccessStatus() {
         
         // Check if user has an active subscription        
         Task {
@@ -47,7 +47,7 @@ class StoreManager: ObservableObject {
         }
     }
     
-    static func purchase(productID: String?, successfulPurchase: @escaping () -> Void) {
+    func purchaseAllAccess(productID: String?, successfulPurchase: @escaping () -> Void) {
         
         guard let productID = productID else { return }
         

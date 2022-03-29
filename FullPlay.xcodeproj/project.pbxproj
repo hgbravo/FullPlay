@@ -19,7 +19,8 @@
 		2837934827AD876800E61EE6 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837934727AD876800E61EE6 /* CustomModifiers.swift */; };
 		2837934A27AD884700E61EE6 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2837934927AD884700E61EE6 /* View+Ext.swift */; };
 		28C2670627D909D6003376DA /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C2670527D909D6003376DA /* StoreManager.swift */; };
-		28C2670927ECE42A003376DA /* StoreViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C2670827ECE42A003376DA /* StoreViewModal.swift */; };
+		28C2670927ECE42A003376DA /* StoreModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C2670827ECE42A003376DA /* StoreModalView.swift */; };
+		28C2670B27F27912003376DA /* StoreModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C2670A27F27912003376DA /* StoreModalViewModel.swift */; };
 		28E02E5B27B47A3700F69A30 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E02E5A27B47A3700F69A30 /* StoreKit.framework */; };
 		28E02E5E27B47E0300F69A30 /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 28E02E5D27B47E0300F69A30 /* Purchases */; };
 		28FBA6CD27A9E245000B11C6 /* FullPlayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6CC27A9E245000B11C6 /* FullPlayApp.swift */; };
@@ -65,7 +66,8 @@
 		2837934727AD876800E61EE6 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
 		2837934927AD884700E61EE6 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		28C2670527D909D6003376DA /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
-		28C2670827ECE42A003376DA /* StoreViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModal.swift; sourceTree = "<group>"; };
+		28C2670827ECE42A003376DA /* StoreModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModalView.swift; sourceTree = "<group>"; };
+		28C2670A27F27912003376DA /* StoreModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModalViewModel.swift; sourceTree = "<group>"; };
 		28E02E5A27B47A3700F69A30 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		28FBA6C927A9E245000B11C6 /* FullPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FullPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28FBA6CC27A9E245000B11C6 /* FullPlayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPlayApp.swift; sourceTree = "<group>"; };
@@ -143,7 +145,8 @@
 		28C2670727ECE3C9003376DA /* StoreView */ = {
 			isa = PBXGroup;
 			children = (
-				28C2670827ECE42A003376DA /* StoreViewModal.swift */,
+				28C2670A27F27912003376DA /* StoreModalViewModel.swift */,
+				28C2670827ECE42A003376DA /* StoreModalView.swift */,
 			);
 			path = StoreView;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				28FBA71627AB18C8000B11C6 /* LoadingView.swift in Sources */,
 				28FBA6E927AACF61000B11C6 /* FPLocation.swift in Sources */,
 				28FBA6E327AABD9F000B11C6 /* CKAsset+Ext.swift in Sources */,
+				28C2670B27F27912003376DA /* StoreModalViewModel.swift in Sources */,
 				2837934127AD85FE00E61EE6 /* ProfileViewModel.swift in Sources */,
 				28FBA70F27AB16D9000B11C6 /* ProfileModalView.swift in Sources */,
 				28FBA70C27AB11D1000B11C6 /* LogoView.swift in Sources */,
@@ -431,7 +435,7 @@
 				2837934627AD871C00E61EE6 /* PhotoPicker.swift in Sources */,
 				2837933427AD83A900E61EE6 /* AppTabView.swift in Sources */,
 				28FBA6FD27AAEDDA000B11C6 /* LocationsMapViewModel.swift in Sources */,
-				28C2670927ECE42A003376DA /* StoreViewModal.swift in Sources */,
+				28C2670927ECE42A003376DA /* StoreModalView.swift in Sources */,
 				28FBA6DE27AAB806000B11C6 /* Constants.swift in Sources */,
 				28FBA6F627AAE58D000B11C6 /* LocationManager.swift in Sources */,
 				2837934827AD876800E61EE6 /* CustomModifiers.swift in Sources */,

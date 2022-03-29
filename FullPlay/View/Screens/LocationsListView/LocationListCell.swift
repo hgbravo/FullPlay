@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LocationListCell: View {
     
+    @EnvironmentObject private var storeManager: StoreManager
     var location: FPLocation
     var profiles: [FPProfile]
     
@@ -30,19 +31,27 @@ struct LocationListCell: View {
                     .minimumScaleFactor(0.75)
                     .truncationMode(.tail)
                     
-                
-                if profiles.isEmpty {
-                    Text("Nobody is Checked In")
-                        .fontWeight(.semibold)
-                        .foregroundColor(.secondary)
-                        .padding(.top, 1)
-                } else {
+                if !storeManager.hasAllAccess {
                     HStack {
-                        ForEach(profiles.indices, id: \.self) { index in
-                            if index <= 3 {
-                                AvatarView(image: profiles[index].avatarImage, size: 35)
-                            } else if index == 4 {
-                                AdditionalProfilesView(number: min(profiles.count - 4, 99))
+                        ForEach(1..<5) { index in
+                            AvatarView(image: UIImage(named: "default-avatar")!, size: 35)
+                                .blur(radius: 2.0, opaque: false)
+                        }
+                    }
+                } else {
+                    if profiles.isEmpty {
+                        Text("Nobody is Checked In")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.secondary)
+                            .padding(.top, 1)
+                    } else {
+                        HStack {
+                            ForEach(profiles.indices, id: \.self) { index in
+                                if index <= 3 {
+                                    AvatarView(image: profiles[index].avatarImage, size: 35)
+                                } else if index == 4 {
+                                    AdditionalProfilesView(number: min(profiles.count - 4, 99))
+                                }
                             }
                         }
                     }

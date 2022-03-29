@@ -24,7 +24,7 @@ struct LocationDetailView: View {
                 if storeManager.hasAllAccess {
                     AvatarGridView(viewModel: viewModel)
                 } else {
-                    NoAccessView()
+                    NoAccessView(viewModel: viewModel)
                 }
                 Spacer()
             }
@@ -35,6 +35,12 @@ struct LocationDetailView: View {
                 
                 ProfileModalView(isShowingProfileModal: $viewModel.isShowingProfileModal,
                                  profile: viewModel.profileForModal)
+            }
+            
+            if viewModel.isShowingStoreModal {
+                FullScreenBlackTransparencyView()
+                
+                StoreModalView(isShowingStoreModal: $viewModel.isShowingStoreModal)
             }
         }
         .task {
@@ -186,6 +192,7 @@ fileprivate struct FullScreenBlackTransparencyView: View {
 fileprivate struct ActionButtonHStack: View {
     
     @ObservedObject var viewModel: LocationDetailViewModel
+    @EnvironmentObject private var storeManager: StoreManager
     
     var body: some View {
         HStack(spacing: 20) {
@@ -196,27 +203,21 @@ fileprivate struct ActionButtonHStack: View {
             }
             .accessibilityLabel(Text("Get directions"))
             
-            Link(destination: URL(string: viewModel.location.websiteURL)!) {
-                LocationActionButton(color: .brandPrimary, imageName: "network")
-            }
-            .accessibilityRemoveTraits(.isButton)
-            .accessibilityLabel(Text("Go to website"))
-            
-            Button {
-//                viewModel.callLocation()
-            } label: {
-                LocationActionButton(color: .brandPrimary, imageName: "phone.fill")
-            }
-            .accessibilityLabel(Text("Call location"))
-            
             if let _ = CloudKitManager.shared.profileRecordID {
                 Button {
-                    viewModel.updateCheckInStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
+                    if storeManager.hasAllAccess {
+                        viewModel.updateCheckInStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
+                    }
+                    
                 } label: {
-                    LocationActionButton(color: viewModel.buttonColor, imageName: viewModel.buttonImageTitle)
+                    if storeManager.hasAllAccess {
+                        LocationActionButton(color: viewModel.buttonColor, imageName: viewModel.buttonImageTitle)
+                    } else {
+                        LocationActionButton(color: .brandPrimary, imageName: "questionmark")
+                    }
                 }
                 .accessibilityLabel(Text(viewModel.buttonA11yLabel))
-                .disabled(viewModel.isLoading)
+                .disabled(viewModel.isLoading || !storeManager.hasAllAccess)
             }
         }
         .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
@@ -257,12 +258,25 @@ fileprivate struct AvatarGridView: View {
 
 fileprivate struct NoAccessView: View {
     
+    @ObservedObject var viewModel: LocationDetailViewModel
+    
     var body: some View {
-        Text("No Access")
-            .lineLimit(3)
-            .minimumScaleFactor(0.75)
-            .frame(height: 70)
-            .padding(.horizontal)
-            .padding(.bottom, 20)
+//        Text("No Access")
+//            .lineLimit(3)
+//            .minimumScaleFactor(0.75)
+//            .frame(height: 70)
+//            .padding(.horizontal)
+//            .padding(.bottom, 20)
+//            .font(.subheadline)
+        
+        Button("Get All Access Subscription") {
+            withAnimation {
+                viewModel.isShowingStoreModal = true
+            }
+        }
+            .buttonStyle(.bordered)
+            .tint(.brandPrimary)
+            .controlSize(.large)
+            .padding()
     }
 }
