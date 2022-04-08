@@ -10,7 +10,7 @@ import SwiftUI
 struct LocationDetailView: View {
     
     @ObservedObject var viewModel: LocationDetailViewModel
-    @EnvironmentObject private var storeManager: StoreManager
+    @EnvironmentObject private var purchasesManager: PurchasesManager
     
     var body: some View {
         
@@ -21,7 +21,7 @@ struct LocationDetailView: View {
                 DescriptionView(text: viewModel.location.description)
                 ActionButtonHStack(viewModel: viewModel)
                 GridHeaderTextView(number: viewModel.checkedInProfiles.count)
-                if storeManager.hasAllAccess {
+                if purchasesManager.hasAllAccess {
                     AvatarGridView(viewModel: viewModel)
                 } else {
                     NoAccessView(viewModel: viewModel)
@@ -192,7 +192,7 @@ fileprivate struct FullScreenBlackTransparencyView: View {
 fileprivate struct ActionButtonHStack: View {
     
     @ObservedObject var viewModel: LocationDetailViewModel
-    @EnvironmentObject private var storeManager: StoreManager
+    @EnvironmentObject private var purchasesManager: PurchasesManager
     
     var body: some View {
         HStack(spacing: 20) {
@@ -205,19 +205,19 @@ fileprivate struct ActionButtonHStack: View {
             
             if let _ = CloudKitManager.shared.profileRecordID {
                 Button {
-                    if storeManager.hasAllAccess {
+                    if purchasesManager.hasAllAccess {
                         viewModel.updateCheckInStatus(to: viewModel.isCheckedIn ? .checkedOut : .checkedIn)
                     }
                     
                 } label: {
-                    if storeManager.hasAllAccess {
+                    if purchasesManager.hasAllAccess {
                         LocationActionButton(color: viewModel.buttonColor, imageName: viewModel.buttonImageTitle)
                     } else {
                         LocationActionButton(color: .brandPrimary, imageName: "questionmark")
                     }
                 }
                 .accessibilityLabel(Text(viewModel.buttonA11yLabel))
-                .disabled(viewModel.isLoading || !storeManager.hasAllAccess)
+                .disabled(viewModel.isLoading || !purchasesManager.hasAllAccess)
             }
         }
         .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))

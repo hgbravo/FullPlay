@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LocationListCell: View {
     
-    @EnvironmentObject private var storeManager: StoreManager
+    @EnvironmentObject private var purchasesManager: PurchasesManager
     var location: FPLocation
     var profiles: [FPProfile]
     
@@ -31,7 +31,7 @@ struct LocationListCell: View {
                     .minimumScaleFactor(0.75)
                     .truncationMode(.tail)
                     
-                if !storeManager.hasAllAccess {
+                if !purchasesManager.hasAllAccess {
                     HStack {
                         ForEach(1..<5) { index in
                             AvatarView(image: UIImage(named: "default-avatar")!, size: 35)

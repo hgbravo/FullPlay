@@ -16,6 +16,7 @@ extension LocationMapView {
         
         @Published var checkedInProfiles: [CKRecord.ID: Int] = [:]
         @Published var isShowingDetailView = false
+        @Published var isLoading = false
         @Published var alertItem: AlertItem?
         @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 28.565017,
                                                                                   longitude: -81.589506),
@@ -48,11 +49,14 @@ extension LocationMapView {
         }
         
         func getLocations(for locationManager: LocationManager) {
+            showLoadingView()
             Task {
                 do {
                     locationManager.locations = try await CloudKitManager.shared.getLocations()
+                    hideLoadingView()
                 } catch {
                     alertItem = AlertContext.unableToGetLocations
+                    hideLoadingView()
                 }
             }
         }
@@ -67,5 +71,23 @@ extension LocationMapView {
                 }
             }
         }
+        
+        
+        func getAllAccessStatus(for purchasesManager: PurchasesManager) {
+            Task {
+                do {
+                    let purchaserInfo = try await Purchases.shared.purchaserInfo()
+                    if  ((purchaserInfo.entitlements[Entitlements.allaccess]?.isActive) == true) {
+                        purchasesManager.hasAllAccess = true
+                    }
+                } catch {
+                    alertItem = AlertContext.unableToGetCheckInStatus
+                }
+            }
+        }
+        
+        
+        private func showLoadingView() { isLoading = true }
+        private func hideLoadingView() { isLoading = false }
     }
 }

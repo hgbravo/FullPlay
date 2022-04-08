@@ -99,7 +99,15 @@ struct AlertContext {
                                                                 dismissButton: .default(Text("Ok")))
     
     //MARK: - Store Errors
-    static let hasNotAllAccess                   = AlertItem(title: Text("No Access"),
+    static let hasNotAllAccess                      = AlertItem(title: Text("No Access"),
                                                                 message: Text("This feature is included with the All Access Subscription. Please get a Monthly or Yearly Subscription to enjoy all the features."),
+                                                                dismissButton: .default(Text("Ok")))
+    
+    static let unableToGetAllAccessStatus           = AlertItem(title: Text("Server Error"),
+                                                                message: Text("We are unable to get All Access Status at this time.\nPlease check your internet connection and try again later or contact customer support if this persists."),
+                                                                dismissButton: .default(Text("Ok")))
+    
+    static let unableToProcessPurchase              = AlertItem(title: Text("Purchase Error"),
+                                                                message: Text("We are unable to process your purchase.\nPlease check your internet connection and try again."),
                                                                 dismissButton: .default(Text("Ok")))
 }

@@ -23,6 +23,7 @@
 		28C2670B27F27912003376DA /* StoreModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C2670A27F27912003376DA /* StoreModalViewModel.swift */; };
 		28E02E5B27B47A3700F69A30 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E02E5A27B47A3700F69A30 /* StoreKit.framework */; };
 		28E02E5E27B47E0300F69A30 /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 28E02E5D27B47E0300F69A30 /* Purchases */; };
+		28E11C7927FC904C00AAE718 /* PurchasesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E11C7827FC904B00AAE718 /* PurchasesManager.swift */; };
 		28FBA6CD27A9E245000B11C6 /* FullPlayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FBA6CC27A9E245000B11C6 /* FullPlayApp.swift */; };
 		28FBA6D127A9E247000B11C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FBA6D027A9E247000B11C6 /* Assets.xcassets */; };
 		28FBA6D427A9E247000B11C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FBA6D327A9E247000B11C6 /* Preview Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		28C2670827ECE42A003376DA /* StoreModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModalView.swift; sourceTree = "<group>"; };
 		28C2670A27F27912003376DA /* StoreModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModalViewModel.swift; sourceTree = "<group>"; };
 		28E02E5A27B47A3700F69A30 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		28E11C7827FC904B00AAE718 /* PurchasesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesManager.swift; sourceTree = "<group>"; };
 		28FBA6C927A9E245000B11C6 /* FullPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FullPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28FBA6CC27A9E245000B11C6 /* FullPlayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPlayApp.swift; sourceTree = "<group>"; };
 		28FBA6D027A9E247000B11C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				28FBA6F527AAE58D000B11C6 /* LocationManager.swift */,
 				28FBA6F727AAE5DB000B11C6 /* HapticManager.swift */,
 				28C2670527D909D6003376DA /* StoreManager.swift */,
+				28E11C7827FC904B00AAE718 /* PurchasesManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				28FBA6E127AAB974000B11C6 /* Color+Ext.swift in Sources */,
 				2837933827AD844B00E61EE6 /* OnboardView.swift in Sources */,
 				28FBA70A27AB10F9000B11C6 /* FPAnnotation.swift in Sources */,
+				28E11C7927FC904C00AAE718 /* PurchasesManager.swift in Sources */,
 				2837933F27AD850000E61EE6 /* LocationListViewModel.swift in Sources */,
 				28FBA6E527AABE1F000B11C6 /* UIImage+Ext.swift in Sources */,
 				2837934327AD867300E61EE6 /* ProfileView.swift in Sources */,

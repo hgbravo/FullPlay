@@ -8,20 +8,23 @@
 import SwiftUI
 import MapKit
 import CoreLocationUI
+import Purchases
 
 struct LocationMapView: View {
     static let tag = 0
     @EnvironmentObject private var locationManager: LocationManager
-    @EnvironmentObject private var storeManager: StoreManager
+    @EnvironmentObject private var purchasesManager: PurchasesManager
     @StateObject private var viewModel = LocationMapViewModel()
     
     
     var body: some View {
+        if viewModel.isLoading { LoadingView() }
+        
         ZStack(alignment: .top) {
             
             Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: locationManager.locations) { location in
                 MapAnnotation(coordinate: location.location.coordinate, anchorPoint: CGPoint(x: 0.5, y: 0.75)) {
-                    FPAnnotation(location: location, number: viewModel.checkedInProfiles[location.id, default: 0], allAccess: storeManager.hasAllAccess)
+                    FPAnnotation(location: location, number: viewModel.checkedInProfiles[location.id, default: 0], allAccess: purchasesManager.hasAllAccess)
                         .onTapGesture {
                             locationManager.selectedLocation = location
                             viewModel.isShowingDetailView = true
@@ -54,9 +57,12 @@ struct LocationMapView: View {
         })
         .alert(item: $viewModel.alertItem, content: { $0.alert })
         .task {
-            if locationManager.locations.isEmpty { viewModel.getLocations(for: locationManager) }
+            viewModel.getAllAccessStatus(for: purchasesManager)
+            if locationManager.locations.isEmpty {
+                viewModel.getLocations(for: locationManager)
+                
+            }
             viewModel.getCheckedInCount()
-            storeManager.getAllAccessStatus()
         }
     }
 }
