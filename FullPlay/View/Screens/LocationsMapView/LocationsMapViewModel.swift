@@ -12,7 +12,7 @@ import Purchases
 
 extension LocationMapView {
     
-    @MainActor final class LocationMapViewModel:  NSObject, ObservableObject, CLLocationManagerDelegate {
+    final class LocationMapViewModel:  NSObject, ObservableObject, CLLocationManagerDelegate {
         
         @Published var checkedInProfiles: [CKRecord.ID: Int] = [:]
         @Published var isShowingDetailView = false
@@ -36,7 +36,7 @@ extension LocationMapView {
         }
         
         
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        @MainActor func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             guard let currentLocation = locations.last else { return }
             
             withAnimation {
@@ -44,12 +44,13 @@ extension LocationMapView {
             }
         }
         
-        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        @MainActor func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
             print("Did Fail with Error")
         }
         
-        func getLocations(for locationManager: LocationManager) {
+        @MainActor func getLocations(for locationManager: LocationManager) {
             showLoadingView()
+            
             Task {
                 do {
                     locationManager.locations = try await CloudKitManager.shared.getLocations()
@@ -62,7 +63,7 @@ extension LocationMapView {
         }
         
         
-        func getCheckedInCount() {
+        @MainActor func getCheckedInCount() {
             Task {
                 do {
                     checkedInProfiles = try await CloudKitManager.shared.getCheckedInProfilesCount()
@@ -73,12 +74,16 @@ extension LocationMapView {
         }
         
         
-        func getAllAccessStatus(for purchasesManager: PurchasesManager) {
+        @MainActor func getAllAccessStatus(for purchasesManager: PurchasesManager) {
             Task {
                 do {
                     let purchaserInfo = try await Purchases.shared.purchaserInfo()
                     if  ((purchaserInfo.entitlements[Entitlements.allaccess]?.isActive) == true) {
                         purchasesManager.hasAllAccess = true
+                        print("Is Active")
+                    } else {
+                        purchasesManager.hasAllAccess = false
+                        print("Not Active")
                     }
                 } catch {
                     alertItem = AlertContext.unableToGetCheckInStatus

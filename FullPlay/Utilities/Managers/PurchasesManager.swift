@@ -7,6 +7,6 @@
 
 import Foundation
 
-@MainActor final class PurchasesManager: ObservableObject {
+final class PurchasesManager: ObservableObject {
     @Published var hasAllAccess: Bool = false
 }

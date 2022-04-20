@@ -12,13 +12,13 @@ import Purchases
 
 struct LocationMapView: View {
     static let tag = 0
+    @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var purchasesManager: PurchasesManager
     @StateObject private var viewModel = LocationMapViewModel()
     
     
     var body: some View {
-        if viewModel.isLoading { LoadingView() }
         
         ZStack(alignment: .top) {
             
@@ -34,7 +34,9 @@ struct LocationMapView: View {
             .accentColor(.fullPlayRed)
             .ignoresSafeArea(edges: .top)
             
-            LogoView(frameWidth: 210).shadow(radius: 15)
+            LogoView(frameWidth: 180).shadow(radius: 15)
+            
+            if viewModel.isLoading { LoadingView() }
         }
         .sheet(isPresented: $viewModel.isShowingDetailView, onDismiss: {
             viewModel.getCheckedInCount()
@@ -63,6 +65,16 @@ struct LocationMapView: View {
                 
             }
             viewModel.getCheckedInCount()
+        }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .inactive {
+                print("Inactive")
+            } else if newPhase == .active {
+                viewModel.getLocations(for: locationManager)
+                print("Active")
+            } else if newPhase == .background {
+                print("Background")
+            }
         }
     }
 }

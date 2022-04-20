@@ -38,7 +38,7 @@ enum CheckInStatus { case checkedIn, checkedOut }
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = location.name
         
-        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
     }
     
     

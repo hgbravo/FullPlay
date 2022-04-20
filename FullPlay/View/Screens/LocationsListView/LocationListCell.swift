@@ -25,11 +25,12 @@ struct LocationListCell: View {
             
             VStack(alignment: .leading) {
                 Text(location.name)
-                    .font(.title2)
+                    .font(.title)
                     .fontWeight(.semibold)
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
                     .truncationMode(.tail)
+                    .fixedSize(horizontal: false, vertical: true)
                     
                 if !purchasesManager.hasAllAccess {
                     HStack {

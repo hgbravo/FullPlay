@@ -6,12 +6,13 @@
 //
 
 import CloudKit
+import UIKit
 
 enum ProfileContext { case create, update }
 
 extension ProfileView {
     
-    @MainActor final class ProfileViewModel: ObservableObject {
+    final class ProfileViewModel: ObservableObject {
         @Published var firstName            = ""
         @Published var lastName             = ""
         @Published var social               = ""
@@ -40,7 +41,7 @@ extension ProfileView {
         }
         
         
-        func isCheckedInStatus() {
+        @MainActor func isCheckedInStatus() {
             guard let profileRecordID = CloudKitManager.shared.profileRecordID else { return }
             
             Task {
@@ -58,7 +59,7 @@ extension ProfileView {
         }
         
         
-        func checkOut() {
+        @MainActor func checkOut() {
             guard let profileID = CloudKitManager.shared.profileRecordID else {
                 alertItem = AlertContext.unableToGetProfile
                 return
@@ -84,12 +85,12 @@ extension ProfileView {
         }
         
         
-        func determineButtonAction() {
+        @MainActor func determineButtonAction() {
             profileContext == .create ? createProfile() : updateProfile()
         }
         
         
-        private func createProfile() {
+        @MainActor private func createProfile() {
             guard isValidProfile() else {
                 alertItem = AlertContext.invalidProfile
                 return
@@ -128,7 +129,7 @@ extension ProfileView {
         }
         
         
-        func getProfile() {
+        @MainActor func getProfile() {
             guard let userRecord = CloudKitManager.shared.userRecord else {
                 alertItem = AlertContext.noUserRecord
                 return
@@ -159,7 +160,7 @@ extension ProfileView {
         }
         
         
-        private func updateProfile() {
+        @MainActor private func updateProfile() {
             guard isValidProfile() else {
                 alertItem = AlertContext.invalidProfile
                 return
@@ -200,6 +201,19 @@ extension ProfileView {
             profileRecord[FPProfile.kAvatar] = avatar.convertToCKAsset()
             
             return profileRecord
+        }
+        
+        
+        func shareSheet(url: String) {
+            let url = URL(string: url)
+            let activityView = UIActivityViewController(activityItems: ["Hey I'm using this amazing App for checking who's playing in our favorites courts,check it out!!!\n\(url!)"], applicationActivities: nil)
+
+            let allScenes = UIApplication.shared.connectedScenes
+            let scene = allScenes.first { $0.activationState == .foregroundActive }
+
+            if let windowScene = scene as? UIWindowScene {
+                windowScene.keyWindow?.rootViewController?.present(activityView, animated: true, completion: nil)
+            }
         }
         
         

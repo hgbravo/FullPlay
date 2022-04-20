@@ -23,7 +23,7 @@ struct LocationListView: View {
                     }
                 }
             }
-            .navigationTitle("Grub Spots")
+            .navigationTitle("Courts")
             .listStyle(.plain)
             .task { await viewModel.getCheckedInProfilesDisctionary() }
             .refreshable { await viewModel.getCheckedInProfilesDisctionary() }

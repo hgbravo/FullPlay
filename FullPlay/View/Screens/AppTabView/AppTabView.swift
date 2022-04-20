@@ -7,26 +7,31 @@
 
 import SwiftUI
 
+private enum Tab: Hashable {
+    case map
+    case list
+    case profile
+}
+
 struct AppTabView: View {
     @StateObject private var viewModel = AppTabViewModel()
-    @State private var selectedTab = LocationMapView.tag
+    @State private var selectedTab: Tab = .map
     
     var body: some View {
         TabView(selection: $selectedTab) {
             LocationMapView()
-                .tabItem { Label("Map", systemImage: "map") }
-                .tag(LocationMapView.tag)
+                .tabItem { Label("Map", systemImage: "mappin.and.ellipse") }
+                .tag(Tab.map)
             
             LocationListView()
                 .tabItem { Label("Courts", systemImage: "sportscourt") }
-                .tag(LocationListView.tag)
+                .tag(Tab.list)
             
             NavigationView { ProfileView() }
             .tabItem {
                 Label("Profile", systemImage: "person")
-                //.environment(\.symbolVariants, .none)
             }
-            .tag(ProfileView.tag)
+            .tag(Tab.profile)
         }
         .task {
             try? await CloudKitManager.shared.getUserRecord()

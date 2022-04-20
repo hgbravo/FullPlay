@@ -97,6 +97,16 @@ struct ProfileView: View {
                     Spacer()
                     Button("Dismiss") { focusedTextField = nil }
                 }
+                
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        viewModel.shareSheet(url: "apple.com")
+                    } label: {
+                        Label("Check Out", systemImage: "square.and.arrow.up")
+                    }
+                    .buttonStyle(.automatic)
+                    .tint(.brandPrimary)
+                }
             }
             
             if viewModel.isLoading { LoadingView() }

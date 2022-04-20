@@ -10,12 +10,12 @@ import CloudKit
 
 extension LocationListView {
     
-    @MainActor final class LocationListViewModel: ObservableObject {
+    final class LocationListViewModel: ObservableObject {
         @Published var checkedInProfiles: [CKRecord.ID: [FPProfile]] = [:]
         @Published var alertItem: AlertItem?
         
         
-        func getCheckedInProfilesDisctionary() async  {
+        @MainActor func getCheckedInProfilesDisctionary() async  {
             do {
                 checkedInProfiles = try await CloudKitManager.shared.getCheckedInProfilesDictionary()
             } catch {
