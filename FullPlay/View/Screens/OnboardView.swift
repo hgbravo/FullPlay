@@ -30,19 +30,32 @@ struct OnboardView: View {
             
             LogoView(frameWidth: 250)
             
-            featureView(imageName: "building.2.crop.circle",
-                        title: "Restaurant Locations",
-                        description: "Find places to dine around the convention center")
+            featureView(imageName: "mappin.and.ellipse",
+                        title: "Courts on the map",
+                        description: "Find courts to play around you")
             
             featureView(imageName: "checkmark.circle",
                         title: "Check In",
-                        description: "Let other iOS Devs know where you are")
+                        description: "Let other players know where you are")
             
             featureView(imageName: "person.2.circle",
                         title: "Find Friends",
-                        description: "See where other iOS Devs are and join the party")
+                        description: "See where other players are and join the game")
             
             Spacer()
+            
+            Text("Coming soon...")
+                .font(.title3)
+                .fontWeight(.bold)
+
+            featureView(imageName: "clock.badge.checkmark",
+                        title: "Organize matches",
+                        description: "Setup matches on a specific court, date and time")
+            
+            featureView(imageName: "person.crop.circle.badge.checkmark",
+                        title: "Auto Check In",
+                        description: "Auto Check In in a court when you're there")
+            
             
         }
     }
@@ -65,7 +78,7 @@ struct featureView: View {
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.brandPrimary)
-                .frame(height: 50)
+                .frame(width: 50, height: 50)
             
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)

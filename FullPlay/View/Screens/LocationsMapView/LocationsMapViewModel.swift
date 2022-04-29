@@ -74,20 +74,18 @@ extension LocationMapView {
         }
         
         
-        @MainActor func getAllAccessStatus(for purchasesManager: PurchasesManager) {
-            Task {
-                do {
-                    let purchaserInfo = try await Purchases.shared.purchaserInfo()
-                    if  ((purchaserInfo.entitlements[Entitlements.allaccess]?.isActive) == true) {
-                        purchasesManager.hasAllAccess = true
-                        print("Is Active")
-                    } else {
-                        purchasesManager.hasAllAccess = false
-                        print("Not Active")
-                    }
-                } catch {
-                    alertItem = AlertContext.unableToGetCheckInStatus
+        @MainActor func getAllAccessStatus(for purchasesManager: PurchasesManager) async {
+            do {
+                let purchaserInfo = try await Purchases.shared.purchaserInfo()
+                if  ((purchaserInfo.entitlements[Entitlements.allaccess]?.isActive) == true) {
+                    purchasesManager.hasAllAccess = true
+                    print("Subscription Is Active 🟢")
+                } else {
+                    purchasesManager.hasAllAccess = false
+                    print("Subscription is Not Active 🔴")
                 }
+            } catch {
+                alertItem = AlertContext.unableToGetCheckInStatus
             }
         }
         

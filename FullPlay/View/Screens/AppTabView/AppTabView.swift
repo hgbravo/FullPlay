@@ -41,6 +41,9 @@ struct AppTabView: View {
             OnboardView(isShowingOnboardView: $viewModel.isShowingOnboardView)
             // OnboardView() *** Using Enviroment presentationMode instead of @Binding on OnboardingView
         }
+        .onAppear {
+            print("TabBar Appears")
+        }
     }
 }
 

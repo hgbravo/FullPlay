@@ -11,7 +11,6 @@ import CoreLocationUI
 import Purchases
 
 struct LocationMapView: View {
-    static let tag = 0
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var purchasesManager: PurchasesManager
@@ -59,7 +58,6 @@ struct LocationMapView: View {
         })
         .alert(item: $viewModel.alertItem, content: { $0.alert })
         .task {
-            viewModel.getAllAccessStatus(for: purchasesManager)
             if locationManager.locations.isEmpty {
                 viewModel.getLocations(for: locationManager)
                 
@@ -70,6 +68,9 @@ struct LocationMapView: View {
             if newPhase == .inactive {
                 print("Inactive")
             } else if newPhase == .active {
+                Task {
+                    await viewModel.getAllAccessStatus(for: purchasesManager)
+                }
                 viewModel.getLocations(for: locationManager)
                 print("Active")
             } else if newPhase == .background {
