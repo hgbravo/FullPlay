@@ -171,4 +171,16 @@ final class CloudKitManager {
         return try await container.publicCloudDatabase.record(for: id)
     }
     
+    
+    func subscribeToNotifications(of newRecord: String) {
+        
+        let predicate = NSPredicate(value: true)
+        let subscription = CKQuerySubscription(recordType: newRecord, predicate: predicate, subscriptionID: "location_added_to_database", options: .firesOnRecordCreation)
+        
+        let notification                    = CKSubscription.NotificationInfo()
+        notification.title                  = "New Court"
+        notification.alertLocalizationArgs  = ["name"]
+        notification.alertBody              = "%@ has been added to your Couts. Open Full Play to see it!"
+        notification.soundName              = "default"
+    }
 }

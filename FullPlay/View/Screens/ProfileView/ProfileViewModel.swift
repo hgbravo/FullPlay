@@ -217,6 +217,28 @@ extension ProfileView {
         }
         
         
+        @MainActor func requestNotificationPermissions() {
+            
+            let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+            
+            Task {
+                do {
+                    try await UNUserNotificationCenter.current().requestAuthorization(options: options)
+                    print("Permissions granted!")
+                    
+                    UIApplication.shared.registerForRemoteNotifications()
+                } catch {
+                    print("Error getting notifications permissions.")
+                }
+            }
+        }
+        
+        
+        func subscribeToNotifications() {
+            
+        }
+        
+        
         private func showLoadingView() { isLoading = true }
         private func hideLoadingView() { isLoading = false }
         
