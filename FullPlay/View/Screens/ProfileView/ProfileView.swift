@@ -11,6 +11,7 @@ import CloudKit
 struct ProfileView: View {
     
     static let tag = 2
+    @State var allowNotification = false
     @StateObject private var viewModel = ProfileViewModel()
     @FocusState private var focusedTextField: ProfileTextField?
     
@@ -77,6 +78,14 @@ struct ProfileView: View {
                     
                     BioTextEditor(text: $viewModel.bio)
                         .focused($focusedTextField, equals: .bio)
+                    
+                    Text("Notifications")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .padding(.top)
+                    
+                    Toggle("Notify me when a new court is added", isOn: $allowNotification)
+                        .toggleStyle(SwitchToggleStyle(tint: .brandPrimary))
                 }
                 .padding(.horizontal)
                 
