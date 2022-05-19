@@ -172,15 +172,70 @@ final class CloudKitManager {
     }
     
     
-    func subscribeToNotifications(of newRecord: String) {
+    func subscribeToNotifications(of record: CKRecord.RecordType, subscriptionID: String, completed: @escaping (Result<CKRecord.RecordType, Error>) -> Void) {
         
         let predicate = NSPredicate(value: true)
-        let subscription = CKQuerySubscription(recordType: newRecord, predicate: predicate, subscriptionID: "location_added_to_database", options: .firesOnRecordCreation)
+        let subscription = CKQuerySubscription(recordType: record, predicate: predicate, subscriptionID: subscriptionID, options: .firesOnRecordCreation)
         
         let notification                    = CKSubscription.NotificationInfo()
         notification.title                  = "New Court"
+        notification.alertLocalizationKey   = "%1$@"
         notification.alertLocalizationArgs  = ["name"]
-        notification.alertBody              = "%@ has been added to your Couts. Open Full Play to see it!"
+        notification.alertBody              = "%1$@ has been added to your Couts. Open Full Play to check this new court!"
         notification.soundName              = "default"
+        
+        subscription.notificationInfo       = notification
+        
+        container.publicCloudDatabase.save(subscription) { returnedSubscription, error in
+            if let error = error {
+                completed(.failure(error))
+            } else {
+                print("Successfully subscribed to notification")
+                completed(.success(record))
+            }
+        }
+    }
+    
+    
+    func subscribeToGeneralNotifications(of record: CKRecord.RecordType, subscriptionID: String, completed: @escaping (Result<CKRecord.RecordType, Error>) -> Void) {
+        
+        let predicate = NSPredicate(value: true)
+        let subscription = CKQuerySubscription(recordType: record, predicate: predicate, subscriptionID: subscriptionID, options: .firesOnRecordCreation)
+        
+        let notification                        = CKSubscription.NotificationInfo()
+        notification.alertLocalizationKey       = "%1$@"
+        notification.alertLocalizationArgs      = ["body"]
+        notification.titleLocalizationKey       = "%1$@"
+        notification.titleLocalizationArgs      = ["title"]
+        notification.subtitleLocalizationKey    = "%2$@"
+        notification.subtitleLocalizationArgs   = ["subtitle"]
+        notification.title                      = "%1$@"
+        notification.subtitle                   = "%2$@"
+        notification.alertBody                  = "%1$@!"
+        notification.soundName                  = "default"
+        notification.desiredKeys                = ["title", "subtitle", "body"]
+        notification.shouldSendContentAvailable = true
+        
+        subscription.notificationInfo       = notification
+        
+        container.publicCloudDatabase.save(subscription) { returnedSubscription, error in
+            if let error = error {
+                completed(.failure(error))
+            } else {
+                print("Successfully subscribed to notification")
+                completed(.success(record))
+            }
+        }
+    }
+    
+    
+    func unsubscribeToNotification(of subscriptionID: String, completed: @escaping (Result<String?, Error>) -> Void) {
+        container.publicCloudDatabase.delete(withSubscriptionID: subscriptionID) { returnedSubscriptionID, error in
+            if let error = error {
+                completed(.failure(error))
+            } else {
+                completed(.success(returnedSubscriptionID))
+            }
+        }
     }
 }

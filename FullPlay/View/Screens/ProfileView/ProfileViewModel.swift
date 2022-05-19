@@ -7,12 +7,14 @@
 
 import CloudKit
 import UIKit
+import SwiftUI
 
 enum ProfileContext { case create, update }
 
 extension ProfileView {
     
     final class ProfileViewModel: ObservableObject {
+        
         @Published var firstName            = ""
         @Published var lastName             = ""
         @Published var social               = ""
@@ -22,6 +24,8 @@ extension ProfileView {
         @Published var isLoading            = false
         @Published var isCheckedIn          = false
         @Published var alertItem: AlertItem?
+        @AppStorage("notifyNewCourt") var notifyNewCourt            = false
+        @AppStorage("allowNotifications") var allowNotifications    = false
         
         private var existingProfileRecord: CKRecord? {
             didSet { profileContext = .update }
@@ -223,10 +227,17 @@ extension ProfileView {
             
             Task {
                 do {
-                    try await UNUserNotificationCenter.current().requestAuthorization(options: options)
-                    print("Permissions granted!")
+                    let authorizationGranted = try await UNUserNotificationCenter.current().requestAuthorization(options: options)
+                    if authorizationGranted {
+                        print("Permissions granted!")
+                        allowNotifications = true
+                        UIApplication.shared.registerForRemoteNotifications()
+                    } else {
+                        allowNotifications = false
+                        print("Permission denied!")
+                        alertItem = AlertContext.enableNotifications
+                    }
                     
-                    UIApplication.shared.registerForRemoteNotifications()
                 } catch {
                     print("Error getting notifications permissions.")
                 }
@@ -234,8 +245,48 @@ extension ProfileView {
         }
         
         
-        func subscribeToNotifications() {
-            
+        func subscribeToNotifications(record: String, subscriptionID: String) {
+            CloudKitManager.shared.subscribeToNotifications(of: record, subscriptionID: subscriptionID) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        print("Subscribed")
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
+        }
+        
+        
+        func subscribeToGeneralNotifications(record: String, subscriptionID: String) {
+            CloudKitManager.shared.subscribeToGeneralNotifications(of: record, subscriptionID: subscriptionID) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        print("Subscribed to general")
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
+        }
+        
+        
+        func unsubscribeToNotifications(of subscriptionID: String) {
+            if notifyNewCourt {
+                notifyNewCourt = false
+            }
+            CloudKitManager.shared.unsubscribeToNotification(of: subscriptionID) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        print("Unsubscribed")
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
         }
         
         

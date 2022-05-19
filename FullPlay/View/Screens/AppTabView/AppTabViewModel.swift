@@ -16,8 +16,6 @@ extension AppTabView {
             didSet { isShowingOnboardView = hasSeenOnboardView }
         }
         
-        let kHasSeenOnboardView = "hasSeenOnboardView"
-        
         
         func checkIfHasSeenOnboard() {
             if !hasSeenOnboardView { hasSeenOnboardView = true }

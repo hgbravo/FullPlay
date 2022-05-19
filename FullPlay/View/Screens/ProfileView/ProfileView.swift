@@ -11,7 +11,6 @@ import CloudKit
 struct ProfileView: View {
     
     static let tag = 2
-    @State var allowNotification = false
     @StateObject private var viewModel = ProfileViewModel()
     @FocusState private var focusedTextField: ProfileTextField?
     
@@ -79,13 +78,47 @@ struct ProfileView: View {
                     BioTextEditor(text: $viewModel.bio)
                         .focused($focusedTextField, equals: .bio)
                     
-                    Text("Notifications")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .padding(.top)
+                    HStack {
+                        Text("Notifications")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                        
+                        Spacer()
+                        
+                        Toggle("", isOn: $viewModel.allowNotifications)
+                            .toggleStyle(SwitchToggleStyle(tint: .brandPrimary))
+                            .onChange(of: viewModel.allowNotifications) { newValue in
+                                print(newValue)
+                                if newValue {
+                                    print("Permission requested")
+                                    viewModel.requestNotificationPermissions()
+                                    viewModel.subscribeToGeneralNotifications(record: RecordType.notification, subscriptionID: NotificationsSubscriptionID.generalNotifications)
+                                } else if viewModel.notifyNewCourt {
+                                    print("Permission denied")
+                                    viewModel.unsubscribeToNotifications(of: NotificationsSubscriptionID.newCourtAdded)
+                                    viewModel.unsubscribeToNotifications(of: NotificationsSubscriptionID.generalNotifications)
+                                } else {
+                                    print("🔴Permission denied")
+                                    viewModel.unsubscribeToNotifications(of: NotificationsSubscriptionID.generalNotifications)
+                                }
+                            }
+                    }
+                    .padding(.top)
                     
-                    Toggle("Notify me when a new court is added", isOn: $allowNotification)
-                        .toggleStyle(SwitchToggleStyle(tint: .brandPrimary))
+                    if viewModel.allowNotifications {
+                        Toggle("Notify me when a new court is added", isOn: $viewModel.notifyNewCourt)
+                            .toggleStyle(SwitchToggleStyle(tint: .brandPrimary))
+                            .onChange(of: viewModel.notifyNewCourt) { newValue in
+                                print(newValue)
+                                if newValue {
+                                    viewModel.subscribeToNotifications(record: RecordType.location, subscriptionID: NotificationsSubscriptionID.newCourtAdded)
+                                } else {
+                                    print("🔴")
+                                    viewModel.unsubscribeToNotifications(of: NotificationsSubscriptionID.newCourtAdded)
+                                }
+                            }
+                    }
+                    
                 }
                 .padding(.horizontal)
                 

@@ -9,10 +9,11 @@ import Foundation
 import UIKit
 
 enum RecordType {
-    static let location = "FPLocation"
-    static let category = "FPCategory"
-    static let zone     = "FPZone"
-    static let profile  = "FPProfile"
+    static let location     = "FPLocation"
+    static let category     = "FPCategory"
+    static let zone         = "FPZone"
+    static let profile      = "FPProfile"
+    static let notification = "FPNotification"
 }
 
 enum PlaceholderImage {
@@ -36,6 +37,11 @@ enum ImageDimension {
 
 enum Entitlements {
     static let allaccess = "allaccess"
+}
+
+enum NotificationsSubscriptionID {
+    static let generalNotifications = "general+notifications"
+    static let newCourtAdded        = "location_added_to_database"
 }
 
 enum DeviceTypes {
