@@ -26,11 +26,15 @@ enum CheckInStatus { case checkedIn, checkedOut }
                    GridItem(.flexible())]
     
     var location: FPLocation
+    var currentLocation: CLLocation?
     var buttonColor: Color { isCheckedIn ? .fullPlayRed : .brandPrimary }
     var buttonImageTitle: String { isCheckedIn ? "person.fill.xmark" : "person.fill.checkmark" }
     var buttonA11yLabel: String { isCheckedIn ? "Check out of location" : "Check into location" }
     
-    init(location: FPLocation) { self.location = location }
+    init(location: FPLocation, currentLocation: CLLocation?) {
+        self.location = location
+        self.currentLocation = currentLocation
+    }
     
     
     func getDirectionsToLocation() {
@@ -78,6 +82,12 @@ enum CheckInStatus { case checkedIn, checkedOut }
             return
         }
         
+        guard let currentLocation = currentLocation else {
+            alertItem = AlertContext.unableToGetCurrentLocation
+            return
+        }
+
+        
         showLoadingView()
         
         Task {
@@ -85,8 +95,14 @@ enum CheckInStatus { case checkedIn, checkedOut }
                 let record = try await CloudKitManager.shared.fetchRecord(with: profileRecordID)
                 switch checkInStatus {
                 case .checkedIn:
-                    record[FPProfile.kIsCheckedIn] = CKRecord.Reference(recordID: location.id, action: .none)
-                    record[FPProfile.kIsCheckedInNilCheck] = 1
+                    if isUserCloseTo(location: location, from: currentLocation) {
+                        record[FPProfile.kIsCheckedIn] = CKRecord.Reference(recordID: location.id, action: .none)
+                        record[FPProfile.kIsCheckedInNilCheck] = 1
+                    } else {
+                        hideLoadingView()
+                        alertItem = AlertContext.notCloseToLocation
+                        return
+                    }
                 case .checkedOut:
                     record[FPProfile.kIsCheckedIn] = nil
                     record[FPProfile.kIsCheckedInNilCheck] = nil
@@ -126,6 +142,19 @@ enum CheckInStatus { case checkedIn, checkedOut }
                 hideLoadingView()
                 alertItem = AlertContext.unableToGetCheckedInProfiles
             }
+        }
+    }
+    
+    
+    private func isUserCloseTo(location: FPLocation, from currentLocation: CLLocation) -> Bool {
+        let minDistance: Double = 7000 //meters
+        
+        let distanceToLocation = currentLocation.distance(from: location.location)
+        
+        if distanceToLocation < minDistance {
+            return true
+        } else {
+            return false
         }
     }
     

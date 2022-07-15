@@ -102,6 +102,14 @@ struct AlertContext {
                                                                 message: Text("We are unable to get users checked into this location at this time.\nPlease try again."),
                                                                 dismissButton: .default(Text("Ok")))
     
+    static let notCloseToLocation                   = AlertItem(title: Text("Check In Error"),
+                                                                message: Text("You must be close to the location in order to check in."),
+                                                                dismissButton: .default(Text("Ok")))
+    
+    static let unableToGetCurrentLocation           = AlertItem(title: Text("Check In Error"),
+                                                                message: Text("We are unable to determine your current location right now. \nPlease make sure Full PLay has permissions to use your location and try again."),
+                                                                dismissButton: .default(Text("Ok")))
+    
     //MARK: - Store Errors
     static let hasNotAllAccess                      = AlertItem(title: Text("No Access"),
                                                                 message: Text("This feature is included with the All Access Subscription. Please get a Monthly or Yearly Subscription to enjoy all the features."),

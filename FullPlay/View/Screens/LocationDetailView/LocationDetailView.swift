@@ -9,8 +9,9 @@ import SwiftUI
 
 struct LocationDetailView: View {
     
-    @ObservedObject var viewModel: LocationDetailViewModel
+    @StateObject var viewModel: LocationDetailViewModel
     @EnvironmentObject private var purchasesManager: PurchasesManager
+    @EnvironmentObject private var locationManager: LocationManager
     
     var body: some View {
         
@@ -56,7 +57,7 @@ struct LocationDetailView: View {
 
 fileprivate struct LocationDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationDetailView(viewModel: LocationDetailViewModel(location: FPLocation(record: MockData.location)))
+        LocationDetailView(viewModel: LocationDetailViewModel(location: FPLocation(record: MockData.location), currentLocation: MockData.mockLocation))
     }
 }
 
@@ -191,7 +192,7 @@ fileprivate struct FullScreenBlackTransparencyView: View {
 
 fileprivate struct ActionButtonHStack: View {
     
-    @ObservedObject var viewModel: LocationDetailViewModel
+    @StateObject var viewModel: LocationDetailViewModel
     @EnvironmentObject private var purchasesManager: PurchasesManager
     
     var body: some View {
@@ -228,7 +229,7 @@ fileprivate struct ActionButtonHStack: View {
 
 fileprivate struct AvatarGridView: View {
     
-    @ObservedObject var viewModel: LocationDetailViewModel
+    @StateObject var viewModel: LocationDetailViewModel
     
     var body: some View {
         ZStack {
@@ -258,7 +259,7 @@ fileprivate struct AvatarGridView: View {
 
 fileprivate struct NoAccessView: View {
     
-    @ObservedObject var viewModel: LocationDetailViewModel
+    @StateObject var viewModel: LocationDetailViewModel
     
     var body: some View {
 //        Text("No Access")

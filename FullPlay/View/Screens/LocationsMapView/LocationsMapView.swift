@@ -41,7 +41,7 @@ struct LocationMapView: View {
             viewModel.getCheckedInCount()
         }, content: {
             NavigationView {
-                LocationDetailView(viewModel: LocationDetailViewModel(location: locationManager.selectedLocation!))
+                LocationDetailView(viewModel: LocationDetailViewModel(location: locationManager.selectedLocation!, currentLocation: locationManager.currentLocation))
                     .toolbar { Button("Dismiss", action: { viewModel.isShowingDetailView = false }) }
             }
         })
