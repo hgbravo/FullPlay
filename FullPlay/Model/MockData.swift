@@ -44,11 +44,18 @@ struct MockData {
     
     static var profile: CKRecord {
         let record                          = CKRecord(recordType: RecordType.profile)
-        record[FPProfile.kFirstName]       = "HenrySuperLongFirstName"
-        record[FPProfile.kLastName]        = "BravoSuperLongoLastName"
-        record[FPProfile.kSocial]          = "@TryUrAppSuperLongSocialUser"
-        record[FPProfile.kBio]             = "This is my Mock Data Bio. This is going great!"
+        record[FPProfile.kFirstName]        = "HenrySuperLongFirstName"
+        record[FPProfile.kLastName]         = "BravoSuperLongoLastName"
+        record[FPProfile.kSocial]           = "@TryUrAppSuperLongSocialUser"
+        record[FPProfile.kBio]              = "This is my Mock Data Bio. This is going great!"
         
         return record
+    }
+    
+    
+    static var mockLocation: CLLocation {
+        let location                        = CLLocation(latitude: 28.47319, longitude: 81.64541)
+        
+        return location
     }
 }

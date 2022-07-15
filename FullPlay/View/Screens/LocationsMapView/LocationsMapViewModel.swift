@@ -28,11 +28,12 @@ extension LocationMapView {
         override init() {
             super.init()
             deviceLocationManager.delegate = self
+//            deviceLocationManager.startUpdatingLocation()
         }
         
         
         func requiereAllowOnceLocationPermession() {
-            deviceLocationManager.requestLocation()
+            deviceLocationManager.requestAlwaysAuthorization()
         }
         
         

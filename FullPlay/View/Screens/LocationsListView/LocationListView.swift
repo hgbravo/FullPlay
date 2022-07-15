@@ -16,7 +16,7 @@ struct LocationListView: View {
         NavigationView {
             List {
                 ForEach(locationManager.locations) { location in
-                    NavigationLink(destination: LocationDetailView(viewModel: LocationDetailViewModel(location: location))) {
+                    NavigationLink(destination: LocationDetailView(viewModel: LocationDetailViewModel(location: location, currentLocation: locationManager.currentLocation))) {
                         LocationListCell(location: location, profiles: viewModel.checkedInProfiles[location.id, default: []])
                             .accessibilityElement(children: .ignore)
                             .accessibilityLabel(viewModel.createVoiceOverSumary(for: location))
