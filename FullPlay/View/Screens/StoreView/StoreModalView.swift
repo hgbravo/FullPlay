@@ -41,8 +41,8 @@ struct StoreModalView: View {
                         Button("All Access Monthly - $3.99") {
                             Task {
                                 await viewModel.makePurchase(productID: "fp_399_1m", purchasesManager: purchasesManager)
+                                isShowingStoreModal = false
                             }
-                            isShowingStoreModal = false
                         }
                         .buttonStyle(.bordered)
                         .tint(.brandSecondary)
@@ -96,6 +96,8 @@ struct StoreModalView: View {
                     .offset(x: 15, y: -15)
                 })
                 .frame(width: geo.size.width, height: geo.size.height)
+                
+                if viewModel.isLoading { LoadingView() }
             }
         }
         .accessibilityAddTraits(.isModal)

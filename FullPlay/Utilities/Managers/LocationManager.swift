@@ -14,6 +14,7 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     @Published var currentLocation: CLLocation?
     
     var selectedLocation: FPLocation?
+    var authorizationStatus: CLAuthorizationStatus = .notDetermined
     
     let deviceLocationManager = CLLocationManager()
     
@@ -24,14 +25,18 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     }
     
     
-    func requiereAlwaysLocationPermession() {
+    func requestAlwaysLocationPermession() {
         deviceLocationManager.requestAlwaysAuthorization()
     }
     
     
     @MainActor func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        currentLocation = locations.first
+        currentLocation = locations.last
         
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        authorizationStatus = manager.authorizationStatus
     }
     
     @MainActor func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

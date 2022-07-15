@@ -47,6 +47,12 @@ struct LocationMapView: View {
         })
         .overlay(alignment: .bottomLeading, content: {
             LocationButton(.currentLocation) {
+                let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+                guard let coordinate = locationManager.currentLocation?.coordinate else { return }
+                let region = MKCoordinateRegion(center: coordinate, span: span)
+                withAnimation {
+                    viewModel.region = region
+                }
                 viewModel.requiereAllowOnceLocationPermession()
             }
             .foregroundColor(.white)

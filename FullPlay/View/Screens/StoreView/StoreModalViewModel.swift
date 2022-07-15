@@ -10,11 +10,12 @@ import Purchases
 
 extension StoreModalView {
     
-    final class StoreModalViewModel: ObservableObject {
+    @MainActor final class StoreModalViewModel: ObservableObject {
         @Published var alertItem: AlertItem?
         @Published var isLoading = false
         
-        @MainActor func makePurchase(productID: String, purchasesManager: PurchasesManager) async {
+        func makePurchase(productID: String, purchasesManager: PurchasesManager) async {
+            showLoadingView()
             do {
                 guard let skProduct = await Purchases.shared.products([productID]).first else { return }
                 let (_, purchaserInfo, userCancelled) = try await Purchases.shared.purchaseProduct(skProduct)
@@ -22,10 +23,10 @@ extension StoreModalView {
                 if purchaserInfo.entitlements[Entitlements.allaccess]?.isActive == true && userCancelled == false {
                     purchasesManager.hasAllAccess = true
                 }
+                hideLoadingView()
             } catch {
-                DispatchQueue.main.async {
-                    self.alertItem = AlertContext.unableToProcessPurchase
-                }
+                self.hideLoadingView()
+                self.alertItem = AlertContext.unableToProcessPurchase
             }
         }
         

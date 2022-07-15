@@ -147,7 +147,7 @@ enum CheckInStatus { case checkedIn, checkedOut }
     
     
     private func isUserCloseTo(location: FPLocation, from currentLocation: CLLocation) -> Bool {
-        let minDistance: Double = 7000 //meters
+        let minDistance: Double = 25 //meters
         
         let distanceToLocation = currentLocation.distance(from: location.location)
         
